@@ -5,7 +5,7 @@ List<string> allowedSigns = ["rock", "paper", "scissors"];
 Console.WriteLine("Let's play Rock Paper Scissors, ok?");
 
 string firstSign = GetCorrectSign("Player 1");
-string secondSign = GetCorrectSign("Player 2");
+string secondSign = GetRandomSign("Player 2");
 
 // 1. Znajdź indeks znaku podanego przez drugą osobę -> x
 int secondSignIndex = allowedSigns.IndexOf(secondSign);
@@ -48,5 +48,13 @@ string GetCorrectSign(string playerName)
         sign = Console.ReadLine()!;
     }
 
+    return sign;
+}
+
+string GetRandomSign(string playerName)
+{
+    int index = Random.Shared.Next(allowedSigns.Count);
+    string sign = allowedSigns[index];
+    Console.WriteLine($"{playerName} chosen {sign}");
     return sign;
 }
