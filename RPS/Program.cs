@@ -1,8 +1,19 @@
 ﻿List<string> allowedSigns = ["rock", "paper", "scissors"];
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
-int expectedWins = 3;
 int pointsToAdd = 1;
+
+Console.WriteLine("How many points is needed to win?");
+string expectedWinsText = Console.ReadLine()!;
+
+int defaultExpectedWins = 3;
+int expectedWins;
+bool parsingResult = int.TryParse(expectedWinsText, out expectedWins);
+if (!parsingResult)
+{
+    Console.WriteLine($"Wrong value. Setting expected wins to {defaultExpectedWins}");
+    expectedWins = defaultExpectedWins;
+}
 
 
 Console.WriteLine("Let's play Rock Paper Scissors, ok?");
