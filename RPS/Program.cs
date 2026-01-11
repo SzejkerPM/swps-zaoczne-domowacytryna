@@ -4,11 +4,8 @@ int secondPlayerPoints = 0;
 int pointsToAdd = 1;
 
 Console.WriteLine("How many points is needed to win?");
-string expectedWinsText = Console.ReadLine()!;
-
 int defaultExpectedWins = 3;
-int expectedWins;
-bool parsingResult = int.TryParse(expectedWinsText, out expectedWins);
+bool parsingResult = int.TryParse(Console.ReadLine(), out int expectedWins);
 if (!parsingResult)
 {
     Console.WriteLine($"Wrong value. Setting expected wins to {defaultExpectedWins}");
