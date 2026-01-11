@@ -3,6 +3,22 @@ int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 int pointsToAdd = 1;
 
+Console.WriteLine("First player, provide your name:");
+string firstPlayerName = Console.ReadLine()!;
+if (string.IsNullOrWhiteSpace(firstPlayerName))
+{
+    Console.WriteLine("Ok, so I will call you Bob");
+    firstPlayerName = "Bob";
+}
+
+Console.WriteLine("Second player, provide your name:");
+string secondPlayerName = Console.ReadLine()!;
+if (string.IsNullOrWhiteSpace(secondPlayerName))
+{
+    Console.WriteLine("Name means nothing on the battlefield - I get it, Snake");
+    secondPlayerName = "Snake";
+}
+
 Console.WriteLine("How many points is needed to win?");
 int defaultExpectedWins = 3;
 bool parsingResult = int.TryParse(Console.ReadLine(), out int expectedWins);
@@ -16,8 +32,8 @@ if (!parsingResult)
 Console.WriteLine("Let's play Rock Paper Scissors, ok?");
 while (true)
 {
-    string firstSign = GetCorrectSign("Player 1");
-    string secondSign = GetCorrectSign("Player 2");
+    string firstSign = GetCorrectSign(firstPlayerName);
+    string secondSign = GetCorrectSign(secondPlayerName);
 
     // 1. Znajdź indeks znaku podanego przez drugą osobę -> x
     int secondSignIndex = allowedSigns.IndexOf(secondSign);
@@ -35,17 +51,17 @@ while (true)
     //    ze znakiem drugiej osoby -> y == (x + 1) % l
     else if (firstSignIndex == indexOfSignWinningWithSecondSign)
     {
-        Console.WriteLine("First player won!");
+        Console.WriteLine($"{firstPlayerName} won!");
         firstPlayerPoints += pointsToAdd;
     }
     else
     {
-        Console.WriteLine("Second player won!");
+        Console.WriteLine($"{secondPlayerName} won!");
         secondPlayerPoints += pointsToAdd;
     }
 
-    Console.WriteLine($"First player: {firstPlayerPoints}");
-    Console.WriteLine($"Second player: {secondPlayerPoints}");
+    Console.WriteLine($"{firstPlayerName}: {firstPlayerPoints}");
+    Console.WriteLine($"{secondPlayerName}: {secondPlayerPoints}");
 
     if (firstPlayerPoints >= expectedWins || secondPlayerPoints >= expectedWins)
     {
